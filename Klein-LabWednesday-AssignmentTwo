@@ -1,0 +1,122 @@
+//Title: Past of the Human Spirit ("Modern Art")
+//This work of modern art represents the past of any human mind. The changing colors
+//show that your past will always be taunting you, watching you. The moving parts
+//show that no matter how hard you try to hide your past, it will always be watching 
+//you, and it is nearly impossible to escape. 
+
+
+void setup() {
+ //set the frame size
+ size(1290, 850);
+
+}
+
+void draw() {
+ //prevent shapes from stacking
+ background(200);
+ 
+ 
+ //left eye
+ beginShape();
+ stroke(0);
+ fill(mouseX, mouseY, mouseX - mouseY);
+ arc(250, 200, 150, 150, 0, PI);
+ endShape(CLOSE);
+ 
+ //right eye
+ beginShape();
+ stroke(0);
+ fill(mouseX, mouseY, mouseX - mouseY);
+ arc(850, 200, 150, 150, 0, PI);
+ endShape(CLOSE);
+ 
+ //left eyebrow
+ beginShape();
+ stroke(0, 0, 0);
+ fill(mouseX, mouseY, mouseX - mouseY);
+ vertex(175, 190);
+ vertex(250, 160);
+ vertex(325, 190);
+ endShape(CLOSE);
+ 
+ //right eyebrow
+ beginShape();
+ stroke(0, 0, 0);
+ fill(mouseX, mouseY, mouseX - mouseY);
+ vertex(775, 190);
+ vertex(923, 190);
+ vertex(853, 160);
+ endShape(CLOSE);
+ 
+ //left top line
+ line(175, 200, 325, 200);
+ 
+ //right top line
+ line(775, 200, 923, 200);
+ 
+ //left pupil
+ point(250, 210);
+ 
+ //right pupil
+ point(850, 210);
+ 
+ //frame (left, upper, right, lower)
+ rectMode(CORNER);
+ fill(0);
+ rect(0, 0, 50, 850);
+ 
+ rect(0, 0, 1300, 50);
+ 
+ rect(1250, 0, 50, 1300);
+
+ rect(0, 700, 1300, 50);
+ 
+  //mouth
+  beginShape();
+  stroke(0);
+  fill(mouseX, mouseY, mouseX + mouseY);
+  ellipse(530, 500, 500, 200);
+  endShape(CLOSE);
+  
+  //nose
+  beginShape();
+  stroke(0);
+  fill(mouseX, mouseY, mouseY + mouseX);
+  ellipse(530, 320, 100, 50);
+  endShape(CLOSE);
+  
+  //outside face shapes
+  beginShape();
+  stroke(mouseX);
+  fill(mouseX);
+  vertex(0, mouseX);
+  vertex(mouseY, mouseX);
+  vertex(0, mouseY);
+  endShape(CLOSE);
+  
+  beginShape();
+  stroke(mouseX);
+  fill(mouseX);
+  vertex(1280, mouseX);
+  vertex(1280, mouseY);
+  vertex(mouseX, mouseY);
+  endShape(CLOSE);
+  
+  beginShape();
+  stroke(mouseX);
+  fill(mouseX);
+  vertex(500, mouseX);
+  vertex(600, mouseY);
+  vertex(400, mouseX + mouseY);
+  vertex(400, mouseX + mouseY);
+  endShape(CLOSE);
+  
+  beginShape(TRIANGLES);
+  stroke(mouseX);
+  fill(mouseX);
+  vertex(750, mouseY);
+  vertex(650, mouseX);
+  vertex(850, mouseX);
+  endShape(CLOSE);
+  
+}
