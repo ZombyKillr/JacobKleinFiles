@@ -1,0 +1,64 @@
+boolean x = false;
+boolean y = false;
+
+void setup() {
+  size(1281, 801);
+  fill(0);
+  textSize(40);
+  text("The Gambler's Fallacy", 450, 40);
+ 
+  //Red Square
+  fill(255, 0, 0);
+  rect(380, 80, 60, 60);
+ 
+  //Red 50
+  textSize(25);
+  fill(0);
+  text("50%", 385, 115);
+  
+  //Black Square
+  fill(0);
+  rect(880, 80, 60, 60);
+  
+  //Black 50
+  textSize(25);
+  fill(255);
+  text("50%", 885, 115);
+
+}
+
+void draw() {
+  //initial sqaures
+  if (x == true){
+  fill(255, 0, 0);
+  rect(100, 200, 80, 80);
+  rect(200, 200, 80, 80);
+  rect(300, 200, 80, 80);
+  rect(400, 200, 80, 80);
+  rect(500, 200, 80, 80);
+  rect(600, 200, 80, 80);
+  rect(700, 200, 80, 80);
+  rect(800, 200, 80, 80);
+  rect(900, 200, 80, 80);
+  fill(#0F9B06);
+  text("What's Next?", 1000, 190);
+  }
+  
+  //definition
+  if (y == true){
+  fill(255, 0, 0);
+  rect(1000, 200, 80, 80);
+  fill(0);
+  text("Believing that 'runs' occur to", 450, 400);
+  text("statistically independent phenomena", 400, 450);
+  text("such as roulette wheel spins", 450, 500);
+  }
+}
+
+void mousePressed() {
+  x = true;
+}
+
+void keyPressed() {
+  y = true;
+}
