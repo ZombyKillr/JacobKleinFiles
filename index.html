@@ -12,315 +12,400 @@
   <p>Description: On my FINAL SKETCH ASSIGNMENT</p>
         <br />
         <br />
-  <h1>Zoo_Battle.pde</h1>
+  <h1>Orb_of_Power</h1>
   <script type="text/processing" data-processing-target="mycanvas1">
   
-  //3 classes: Move, Timer, One you wrote yourself
-//2 scenes (states)
-//1 image
-//Theme: Animals
-//Game like Rock, Paper, Scissors. Each player picks an animal, after a few seconds, 
-//the animals, and the winner, is revealed
-
-MenuText myMenuText;
-Images myImages;
-Game myGame;
-Reveal myReveal;
-
-
-void setup() {
-  size(800, 600);
-  myMenuText = new MenuText();
-  myImages = new Images();
-  myGame = new Game();
-}
-
-void draw() {
-  background(#AD6B00);
-  myMenuText.showText();
-  myImages.showImage();
-
-  //game screen
-  if (menu == false && game == true) {
-    myGame.showAnimalChoices();
-    myGame.turns();
-    myGame.keyPressed();
-  }
-  //winner screen
-  if (myGame.player1turn == false && myGame.player2turn == false && myGame.pause == false) {
-    menu = false;
-    game = false;
-    myReveal = new Reveal(6000);
-    textSize(50);
-    fill(#FC0303);
-    text("And the winner is...", 150, 100);
-
-
-
-    // 1 = turtle, 2 = rabbit, 3 = eagle
-
-    //revealing choices
-    if (myReveal.isFinished() == true) {
-      if (myGame.player1choice == 1) {
-        textSize(30);
-        fill(#3AFF00);
-        text("Player 1 chose Turtle!", 50, 300);
-      }
-      if (myGame.player1choice == 2) {
-        textSize(30);
-        fill(#743C04);
-        text("Player 1 chose Rabbit!", 50, 300);
-      }
-      if (myGame.player1choice == 3) {
-        textSize(30);
-        fill(#CDD1CA);
-        text("Player 1 chose Eagle!", 50, 300);
-      }
-      if (myGame.player2choice == 1) {
-        textSize(30);
-        fill(#3AFF00);
-        text("Player 2 chose Turtle!", 450, 300);
-      }
-      if (myGame.player2choice == 2) {
-        textSize(30);
-        fill(#743C04);
-        text("Player 2 chose Rabbit!", 450, 300);
-      }
-      if (myGame.player2choice == 3) {
-        textSize(30);
-        fill(#CDD1CA);
-        text("Player 2 chose Eagle!", 450, 300);
-      }
-      //show winner
-      //PLAYER 1 WINS           
-      if (myGame.player1choice == 1 && myGame.player2choice == 2) {
-        textSize(50);
-        fill(#FC0303);
-        text("Player 1 Wins!", 200, 500);
-      }
-      if (myGame.player1choice == 2 && myGame.player2choice == 3) {
-        textSize(50);
-        fill(#FC0303);
-        text("Player 1 Wins!", 200, 500);
-      }
-      if (myGame.player1choice == 3 && myGame.player2choice == 1) {
-        textSize(50);
-        fill(#FC0303);
-        text("Player 1 Wins!", 200, 500);
-      }
-      //PLAYER 2 WINS
-      if (myGame.player2choice == 1 && myGame.player1choice == 2) {
-        textSize(50);
-        fill(#FC0303);
-        text("Player 2 Wins!", 200, 500);
-      }
-      if (myGame.player2choice == 2 && myGame.player1choice == 3) {
-        textSize(50);
-        fill(#FC0303);
-        text("Player 2 Wins!", 200, 500);
-      }
-      if (myGame.player2choice == 3 && myGame.player1choice == 1) {
-        textSize(50);
-        fill(#FC0303);
-        text("Player 2 Wins!", 200, 500);
-      }
-      //TIE GAME
-      if (myGame.player2choice == 1 && myGame.player1choice == 1) {
-        textSize(50);
-        fill(#FC0303);
-        text("It's a Tie!", 200, 500);
-      }
-      if (myGame.player2choice == 2 && myGame.player1choice == 2) {
-        textSize(50);
-        fill(#FC0303);
-        text("It's a Tie!", 200, 500);
-      }
-      if (myGame.player2choice == 3 && myGame.player1choice == 3) {
-        textSize(50);
-        fill(#FC0303);
-        text("It's a Tie!", 200, 500);
-      }
-    }
-  }
-}
-
-
-//Clicking buttons
-void mousePressed() {
-  if (mouseX > 120 && mouseX < 720 && mouseY > 70 && mouseY < 230) {
-    menu = false;
-    game = true;
-  }
-
-  if (mouseX > 120 && mouseX < 720 && mouseY < 620 && mouseY > 460) {
-    exit();
-  }
-}
-
-class Game {
-
-  //    turtle, rabbit, eagle
-
-
-  boolean player1turn = true;
-  boolean player2turn = false;
-  boolean pause = false;
-  int player1choice;
-  int player2choice;
-
-  void showAnimalChoices() {
-    textSize(60);
-    fill(#3AFF00);
-    text("TURTLE (PRESS T)", 180, 100);
-    fill(#743C04);
-    text("RABBIT (PRESS R)", 180, 200);
-    fill(#CDD1CA);
-    text("EAGLE (PRESS E)", 180, 300);
-    textSize(25);
-    fill(#FC0303);
-    text("Turtle outruns Rabbit, Rabbit catches Eagle, Eagle picks up Turtle", 1, 370);
-  }
-
-
-  void turns() {
-    if (player1turn == true && pause == false) {
-      textSize(40);
-      text("Player 1, choose your animal!", 150, 450);
-    }
-
-    if (pause == true) {
-      textSize(20);
-      text("Player 1, look away! Player 2, press space to start your turn!", 100, 450);
-    }
-
-    if (player2turn == true && pause == false) {
-      textSize(40);
-      text("Player 2, choose your animal!", 150, 450);
-    }
-  }
-
-  void keyPressed() {
-    if (player1turn == true && key == 't') {
-      player1choice = 1;
-      player1turn = false;
-      player2turn = false;
-      pause = true;
-    } else if (player1turn == true && key == 'r') {
-      player1choice = 2;
-      player1turn = false;
-      player2turn = false;
-      pause = true;
-    } else if (player1turn == true && key == 'e') {
-      player1choice = 3;
-      player1turn = false;
-      player2turn = false;
-      pause = true;
-    }
-
-    if (player1turn == false && player2turn == false && pause == true && key == ' ') {
-      player1turn = false;
-      pause = false;
-      player2turn = true;
-    }
-
-    if (player2turn == true && key == 't') {
-      player2choice = 1;
-      player1turn = false;
-      player2turn = false;
-      pause = false;
-    } else if (player2turn == true && key == 'r') {
-      player2choice = 2;
-      player1turn = false;
-      player2turn = false;
-      pause = false;
-    } else if (player2turn == true && key == 'e') {
-      player2choice = 3;
-      player1turn = false;
-      player2turn = false;
-      pause = false;
-    }
-  }
-}
-
-PImage animalsPic;
-int imageX = 10;
-boolean edge = false;
-int speed;
-class Images {
-
-  void showImage() {
-    if (menu == true && game == false) {
-      if (imageX >= width - 200) {
-        edge = true;
-      }
-
-      if (imageX <= 0) {
-        edge = false;
-      }
-
-      if (edge == false) {
-        speed = 10;
-      } else {
-        speed = -10;
-      }
-
-      imageX = imageX + speed;
-
-      animalsPic = loadImage("https://cloud.githubusercontent.com/assets/14265895/11695273/f391efa0-9e73-11e5-9b18-444f67f70dee.png");
-      image(animalsPic, imageX, 330, 200, 150);
-    }
-  }
-}
-
+  int player1x = 60;
+int player2x = 940;
+int player1y = 60;
+int player2y = 540;
+int speed = 20;
+float player1health = 100;
+float player2health = 100;
 boolean game = false;
+float orbx = 500;
+float orby = 300;
 boolean menu = true;
 
-class MenuText {
+void setup(){
+  size(1010, 600);
+} //end setup
+
+void draw(){
+  if (player1health < 1) {
+   player2wins();
+ }
+ 
+ 
+ if (player2health < 1) {
+   player1wins();
+ }
+  
+  
+  rectMode(CENTER);
+  if (menu == true) {
+    background(#87118E);
+    textSize(70);
+    fill(random(0, 255), random(0, 255), random(0, 255));
+    text("Orb of Power", 290, 75);
+    
+    //play button
+    noFill();
+    rect(515, 150, 300, 50);
+    fill(255);
+    textSize(45);
+    text("Play", 470, 165);
+    
+    //quit button
+    noFill();
+    rect(515, 250, 300, 50);
+    fill(250);
+    textSize(45);
+    text("Quit", 470, 265);
+    
+    //player 1 instructions
+    textSize(25);
+    fill(#38FA1C);
+    text("Player 1, use WASD to move", 10, 200);
+    text("Use C and V to shoot", 10, 230);
+    
+    //player 2 instructions
+    fill(#FF9100);
+    text("Player 2, use 8546 to move", 675, 200);
+    text("Use < and > to shoot", 675, 230);
+    
+    //orb instructions
+    textSize(45);
+    fill(random(0, 255), random(0, 255), random(0, 255));
+    text("Touching the Orb of Power restores health!", 40, 450);
+
+    
+  }
+  
+  ellipseMode(CENTER);
+  rectMode(CORNER);
+  if (game == true) {
+  
+   background(#87118E);
+   
+   
+   fill(255);
+   textSize(30);
+   text("Player 1 Health: " + round(player1health), 10, 30);
+   text("Player 2 Health: " + round(player2health), 700, 30);
+  
+  //player 1
+  fill(#38FA1C);
+  ellipse(player1x, player1y, 50, 50);
+  
+  if (player1x > width) {
+     player1x = width - 1;
+  }
+  
+  if (player1y > height) {
+     player1y = height - 1;
+  }
+  
+  if (player1y < 0) {
+     player1y = 1;
+  }
+
+if (player1x < 0) {
+     player1x = 1; 
+  }
+
+//player 2 
+  fill(#FF9100);
+  ellipse(player2x, player2y, 50, 50);
+  
+  if (player2x > width) {
+     player2x = width - 1;
+  }
+  
+  if (player2y > height) {
+     player2y = height - 1;
+  }
+  
+  if (player2y < 0) {
+     player2y = 1;
+  }
+
+if (player2x < 0) {
+     player2x = 1; 
+  }
+
+  }
+
+    orb();
+
+} 
+//end draw
+
+void keyPressed(){
+  
+ //player 1 moving
+  
+  if (game == true) {
+  
+  if (key == 'd') {
+    player1x = player1x + speed;
+  }
+  if (key == 'a') {
+   player1x = player1x - speed;
+  }
+  if (key == 'w') {
+   player1y = player1y - speed; 
+  }
+  if (key == 's') {
+   player1y = player1y + speed; 
+  }
+
+//player 2 moving
+  
+  if (key == '6') {
+    player2x = player2x + speed;
+  }
+  if (key == '4') {
+   player2x = player2x - speed;
+  }
+  if (key == '8') {
+   player2y = player2y - speed; 
+  }
+  if (key == '5') {
+   player2y = player2y + speed; 
+  }
 
 
-  void showText() {
-    if (game == false && menu == true) {
-      textSize(40);
-      text("ZOO BATTLE", 300, 80);
-      rectMode(CENTER);
-      noFill();
-      rect(420, 150, 300, 80);
-      text("PLAY", 370, 160);
-      rect(420, 540, 300, 80);
-      text("QUIT", 370, 550);
-      textSize(20);
-      text("Select the animal for Player 1", 220, 220);
-      text("Then, Select the animal for Player 2", 210, 250);
-      text("Don't look when the other player is selecting an animal", 190, 280);
-      text("After both players have selected, a winner will be declared", 170, 310);
+//player 1 shooting
+
+  if (key == 'c') {
+    fill(#FFF81A);
+    rect(player1x, player1y, -120, 15);
+    if (player2x < player1x) { 
+      if (player2x > player1x - 150) {
+        if (player2y == player1y) {
+          player2hitbyBullet();
+        }
+           
+      
+        }
+      }
+    }
+  
+  
+  if (key == 'v') {
+    fill(#FFF81A);
+    rect(player1x, player1y, 120, 15);
+    if (player2x > player1x) { 
+      if (player2x < player1x + 150) {
+        if (player2y == player1y) {
+          player2hitbyBullet();
+        }
+      }
     }
   }
-}
-
-class Reveal {
-  int startingTime;  // When Timer started
-  int finalTime;  // How long Timer should last
-
-  // The constructor, set how long the Timer last with integer value
-  Reveal(int _finalTime) {
-    finalTime = _finalTime;
+  
+  
+  
+  
+  
+  
+//player 2 shooting
+  if (key == ',') {
+    fill(#FFF81A);
+    rect(player2x, player2y, -120, 15);
+    if (player1x < player2x) { 
+      if (player1x > player2x - 150) {
+        if (player1y == player2y) {
+          player1hitbyBullet();
+        }
+      }
+    }
+    
   }
-
-  // Start the Timer
-  void start() {
-    startingTime = millis();
-  }
-
-  boolean isFinished() {
-    // check how much time has passed
-    int passedTime = millis() - startingTime;
-    if (passedTime > finalTime) {
-      return true;
-    } else {
-      return false;
+  
+  
+  if (key == '.') {
+    fill(#FFF81A);
+    rect(player2x, player2y, 120, 15);
+    if (player1x > player2x) { 
+      if (player1x < player2x + 150) {
+        if (player1y == player2y) {
+          player1hitbyBullet();
+        }
+      }
     }
   }
+  }
+  
+  if (key == 'r') {
+    if (game == false) {
+      if (menu == false) {
+        game = true;
+        menu = false;
+        player1health = 100;
+        player2health = 100;
+        stroke(0);
+        player1x = 60;
+        player2x = 940;
+        player1y = 60;
+        player2y = 540;
+      }
+    }
+  }
+}  //end key pressed
+
+
+void player2hitbyBullet() {
+ player2health = player2health - 2;
+ fill(0);
+ ellipse(player2x, player2y, 50, 50);
+ 
+ if (player2health < 1) {
+    player1wins();  
+ }
 }
+
+void player1hitbyBullet() {
+ player1health = player1health - 2;
+ fill(0);
+ ellipse(player1x, player1y, 50, 50);
+ 
+ if (player1health < 1) {
+   player2wins();
+ }
+}
+
+
+
+
+
+void player1wins() {
+ game = false;
+ menu = false;
+ background(0);
+ fill(#38FA1C);
+ textSize(80);
+ text("The Greenians Win!", 125, 100);
+ textSize(30);
+ 
+ for (int circles = 1; circles < 10; circles++) {
+   noFill();
+   stroke(#38FA1C);
+   ellipse(width / 2, height / 2, (circles * 40),  (circles * 40));
+ }
+ fill(random(0, 255), random(0, 255), random(0, 255));
+   ellipse(width / 2, height / 2, 40, 40);
+   fill(#38FA1C);
+textSize(30);
+   text("Press R to restart", 375, height - 30);
+   
+   
+}
+
+ 
+ 
+ 
+ 
+ 
+ void player2wins() {
+   game = false;
+   menu = false;
+   background(0);
+   fill(#FF9100);
+   textSize(80);
+   text("The Orangians Win!", 125, 100);
+   textSize(30);
+   text("Press R to restart", 375, height - 30);
+  
+  for (int circles = 1; circles < 10; circles++) {
+   noFill();
+   stroke(#FF9100);
+   ellipse(width / 2, height / 2, (circles * 40),  (circles * 40));
+  }
+  fill(random(0, 255), random(0, 255), random(0, 255));
+  ellipse(width / 2, height / 2, 40, 40);
+}
+
+void orb() {
+  
+  if (game == true) {
+  
+  fill(random(0, 255), random(0, 255), random(0, 255));
+  ellipse(orbx, orby, 40, 40);
+  float orbChangex = (random(-10, 10));
+  float orbChangey = (random(-10, 10));
+  orbx = orbx + orbChangex;
+  orby = orby + orbChangey;
+  
+  if (orbx > width) {
+     orbx = width - 1;
+  }
+  
+  if (orby > height) {
+     orby = height - 1;
+  }
+  
+  if (orby < 0) {
+     orby = 1;
+  }
+
+if (orbx < 0) {
+     orbx = 1; 
+  }
+  
+  if (orbx < player1x + 50) {
+    if (orbx > player1x - 50) {
+      if (orby > player1y - 50) {
+        if (orby < player1y + 50) {
+        player1health = player1health + 0.05;
+      }
+    }
+  }
+ }
+ 
+ 
+ 
+ if (orbx < player2x + 50) {
+    if (orbx > player2x - 50) {
+      if (orby > player2y - 50) {
+        if (orby < player2y + 50) {
+        player2health = player2health + 0.05;
+      }
+    }
+  }
+ }
+ 
+ if (player2health > 100) {
+   player2health = 100;
+ }
+ 
+ if (player1health > 100) {
+   player1health = 100;
+ }
+  
+  }
+}
+   
+   void mousePressed() {
+     if (menu == true) {
+       if (game == false) {
+         if (mouseX > 215 && mouseX < 815 && mouseY < 200 && mouseY > 100) {
+           game = true;
+           menu = false;
+         }
+       }
+     }
+     if (menu == true) {
+       if (game == false) {
+         if (mouseX > 215 && mouseX < 815 && mouseY < 300 && mouseY > 100) {
+           exit();
+         }
+       }
+     }
+ }
+
+  
 
 
   </script>
