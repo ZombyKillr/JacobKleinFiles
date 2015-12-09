@@ -1,2 +1,2 @@
 # JacobKleinFiles
-UW Whitewater MAGD Jacob Klein Files
+UW Whitewater MAGD 150 (Wednesday) Jacob Klein Files
