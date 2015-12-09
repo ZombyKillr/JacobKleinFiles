@@ -1,2 +1,3 @@
 # JacobKleinFiles
-UW Whitewater MAGD 150 (Wednesday) Jacob Klein Files
+UW-Whitewater MAGD 150 
+Jacob Klein Files (Wednesday Lab)
