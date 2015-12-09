@@ -249,7 +249,7 @@ class Images {
 
       imageX = imageX + speed;
 
-      animalsPic = loadImage("animals.png");
+      animalsPic = loadImage("https://cloud.githubusercontent.com/assets/14265895/11695273/f391efa0-9e73-11e5-9b18-444f67f70dee.png");
       image(animalsPic, imageX, 330, 200, 150);
     }
   }
