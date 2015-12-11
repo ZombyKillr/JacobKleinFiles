@@ -36,11 +36,9 @@ void draw(){
    player2wins();
  }
  
- 
  if (player2health < 1) {
    player1wins();
  }
-  
   
   rectMode(CENTER);
   if (menu == true) {
@@ -79,7 +77,6 @@ void draw(){
     fill(random(0, 255), random(0, 255), random(0, 255));
     text("Touching the Orb of Power restores health!", 40, 450);
 
-    
   }
   
   ellipseMode(CENTER);
@@ -87,7 +84,6 @@ void draw(){
   if (game == true) {
   
    background(#87118E);
-   
    
    fill(255);
    textSize(30);
@@ -204,12 +200,7 @@ void keyPressed(){
       }
     }
   }
-  
-  
-  
-  
-  
-  
+
 //player 2 shooting
   if (key == ',') {
     fill(#FFF81A);
@@ -223,8 +214,7 @@ void keyPressed(){
     }
     
   }
-  
-  
+
   if (key == '.') {
     fill(#FFF81A);
     rect(player2x, player2y, 120, 15);
@@ -255,7 +245,6 @@ void keyPressed(){
   }
 }  //end key pressed
 
-
 void player2hitbyBullet() {
  player2health = player2health - 2;
  fill(0);
@@ -275,10 +264,6 @@ void player1hitbyBullet() {
    player2wins();
  }
 }
-
-
-
-
 
 void player1wins() {
  game = false;
@@ -300,14 +285,7 @@ void player1wins() {
 textSize(30);
    text("Press R to restart", 375, height - 30);
    
-   
 }
-
- 
- 
- 
- 
- 
  void player2wins() {
    game = false;
    menu = false;
@@ -364,8 +342,6 @@ if (orbx < 0) {
   }
  }
  
- 
- 
  if (orbx < player2x + 50) {
     if (orbx > player2x - 50) {
       if (orby > player2y - 50) {
@@ -410,7 +386,7 @@ if (orbx < 0) {
 
   </script>
   <canvas id="mycanvas1"></canvas>
-  <p>Description:</p>
+  <p>Description:This is an epic battle between the Orangians and the Greenians, two enemy alien species. Instrucions are on the main menu. The object is simple: eliminate your opponent.</p>
         <br />
         <br />
   <h1>Soccer.pde</h1>
