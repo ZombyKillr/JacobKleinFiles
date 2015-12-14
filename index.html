@@ -373,6 +373,94 @@ class TimerforSpawning {
   }
 }
 
+int zombieX = 30;
+int zombieY = 30;
+float zombieSpeed = 1.0;
+int[][] zombieSpawn = { {10, 10}, {60, 10}, {910, 890}, {750, 600}, {510, 1000}, {880, 10}, {700, 800}, {456, 32}, {356, 800}, {900, 100}, {234, 30} };
+int corner;
+boolean canSpawn = true;
+int wave = 0;
+int kills = 0;
+
+
+class Zombies {
+
+  void display() {
+
+    fill(255, 0, 0);
+    ellipseMode(CENTER);
+    for (int x = 0; x <= wave; x++) {
+      ellipse(zombieSpawn[x][0], zombieSpawn[x][1], 20, 20);
+    }
+  }
+
+  void update() {  
+    //zombies follow player at set speed
+    for (int w = 0; w <= wave; w++) {
+
+      if (zombieSpawn[w][0] > playerX) {
+        zombieSpawn[w][0] -= zombieSpeed;
+      }
+
+      if (zombieSpawn[w][0] < playerX) {
+        zombieSpawn[w][0] += zombieSpeed;
+      }
+
+      for (int z = 0; z <= wave; z++) {
+
+        if (zombieSpawn[z][1] > playerY) {
+          zombieSpawn[z][1] -= zombieSpeed;
+        }
+
+        if (zombieSpawn[z][1] < playerY) {
+          zombieSpawn[z][1]+= zombieSpeed;
+        }
+
+
+        //Player getting hit by zombie
+        for (int r = 0; r <= wave; r++) {
+          if (zombieSpawn[r][0] == playerX && zombieSpawn[r][0] == playerX && zombieSpawn[r][1] == playerY && zombieSpawn[r][1] == playerY) {
+            //player is dead
+            playerHealth -= 0.05;
+            if (playerHealth < 1.0) {
+              playerHealth = 0;
+              isDead = new Dead();
+              isDead.display();
+            }
+          }
+
+          //is the player shooting?
+          if (game == true && menu == false && store == false) {
+            if (mousePressed == true) {
+              shooting = true;
+            }
+            if (mousePressed == false) {
+              shooting = false;
+            }
+          }
+
+          //shooting zombies
+          if (shooting == true) {
+            if (zombieSpawn[r][0] < mouseX + accuracy && zombieSpawn[r][0] > mouseX - accuracy && zombieSpawn[r][1] > mouseY - accuracy && zombieSpawn[r][1] < mouseY + accuracy) {
+              zombieSpawn[r][0] = (round(random(0, 1000)));
+              zombieSpawn[r][1] = (round(random(0, 1000)));
+              kills += 1;
+              if (kills == ((wave + 1) * (wave + 5)) ) {
+                myTimer.start();
+                wave += 1;
+                if (wave > 10) {
+                  wave = 10;
+                }
+                zombieSpeed += 0.25;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
   </script>
   <canvas id="mycanvas-final"></canvas>
   <p>Description: I love zombie games, so I knew that my final project would be an original zombie game. The goal: survive.</p>
