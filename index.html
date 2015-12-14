@@ -932,7 +932,152 @@ point(360, 74);
   <h1>Dogs.pde</h1>
   <script type="text/processing" data-processing-target="mycanvas4">
   
-  <!-- Your sketch4 goes here -->
+  boolean x = false;
+
+void setup() {
+size(850, 600);
+}
+
+void draw(){
+
+    
+    //Mr. Blonde
+fill(255, 255, 0);
+rect(0, 0, 850, 100);
+
+//Mr. Blue
+fill(0, 0, 255);
+rect(0, 100, 850, 100);
+
+//Mr. Orange
+fill(255, 100, 0);
+rect(0, 200, 850, 100);
+
+//Mr. White
+fill(255, 255, 255);
+rect(0, 300, 850, 100);
+
+//Mr. Brown
+fill(#5A1C03);
+rect(0, 400, 850, 100);
+
+
+//Mr. Pink
+fill(255, 0, 100);
+rect(0, 500, 850, 100);
+  
+//Diamond
+beginShape();
+fill(#B6F7F6);
+vertex(mouseX - 10, mouseY);
+vertex(mouseX, mouseY + 30);
+vertex(mouseX + 10, mouseY);
+endShape(CLOSE);
+
+beginShape();
+fill(#B6F7F6);
+vertex(mouseX - 10, mouseY);
+vertex(mouseX - 20, mouseY);
+vertex(mouseX, mouseY + 30);
+endShape(CLOSE);
+
+beginShape();
+fill(#B6F7F6);
+vertex(mouseX + 20, mouseY);
+vertex(mouseX + 10, mouseY);
+vertex(mouseX, mouseY + 30);
+endShape(CLOSE);
+
+//left triangle
+beginShape();
+fill(#B6F7F6);
+triangle(mouseX - 20, mouseY, mouseX - 10, mouseY - 10, mouseX - 10, mouseY);
+endShape(CLOSE);
+
+//right triangle
+beginShape();
+fill(#B6F7F6);
+triangle(mouseX + 20, mouseY, mouseX + 10, mouseY - 10, mouseX + 10, mouseY);
+endShape(CLOSE);
+
+//middle square
+fill(#B6F7F6);
+rect(mouseX - 10, mouseY - 10, 20, 10);
+  
+   if (x == true){
+ 
+//Blood
+fill (255, 0, 0);
+ellipse(50, 60, 30, 20);
+ellipse(250, 68, 25, 40);
+ellipse(120, 450, 50, 67);
+
+beginShape();
+vertex(350, 26);
+vertex(480, 40);
+vertex(560, 89);
+vertex(330, 30);
+endShape(CLOSE);
+
+beginShape();
+vertex(230, 430);
+vertex(200, 399);
+vertex(215, 345);
+vertex(240, 300);
+endShape(CLOSE);
+
+beginShape();
+vertex(700, 285);
+vertex(740, 298);
+vertex(760, 310);
+vertex(720, 305);
+endShape(CLOSE);
+
+beginShape();
+vertex(678, 300);
+vertex(645, 400);
+vertex(665, 350);
+vertex(600, 450);
+endShape(CLOSE);
+
+arc(350, 250, 50, 50, PI, TWO_PI);
+arc(430, 170, 60, 60, 0, PI);
+
+ellipse(380, 350, 90, 70);
+line(700, 150, 750, 260);
+
+beginShape();
+vertex(700, 60);
+vertex(650, 80);
+vertex(675, 73);
+vertex(680, 58);
+endShape(CLOSE);
+
+
+
+
+stroke(255, 0, 0);
+point(300, 256);
+point(566, 353);
+point(12, 34);
+point(45, 89);
+point(430, 190);
+point(250, 450);
+line(300, 150, 320, 170);
+line(200, 450, 123, 212);
+  }
+  
+}
+
+void mousePressed() {
+  
+x = true;
+}
+
+void keyPressed() {
+ x = false; 
+ stroke(0);
+}
 
   </script>
   <canvas id="mycanvas4"></canvas>
